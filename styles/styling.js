@@ -40,6 +40,8 @@ var myStyles = React.StyleSheet.create({
         
         
     },
-    bottomBar: { }
+    bottomBar: {
+        backgroundColor : "#757575",
+     }
 })
 module.exports = myStyles;

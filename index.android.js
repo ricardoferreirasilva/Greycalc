@@ -6,7 +6,7 @@
 var {s_height, s_width} = Dimensions.get('window');
 var s = require('./styles/styling.js');
 import { Col, Row, Grid } from 'react-native-easy-grid';
-import { Container, Header, Title, Content, H1,Footer, FooterTab, Icon } from 'native-base';
+import { Button,Container, Header, Title, Content, H1,Footer, FooterTab, Icon } from 'native-base';
 import React, { Component } from 'react';
 import {
   Dimensions,
@@ -56,9 +56,34 @@ class InputCellBottom extends Component
   }
 };
 export default class Greycalc extends Component {
+   constructor(props)
+   {
+     super(props);
+      this.state = {
+        equation: '',
+      };
+       this._pushToken = this._pushToken.bind(this);
+   }
   _pushToken(token)
   {
-      console.log("Parent : "+ token);
+      if(token == "=")
+      {
+        this.setState({
+           equation : "result",
+        }
+      )}
+      else if(token == "CLR")
+      {
+        
+        this.setState({
+           equation : "",
+        }
+      )}
+      else{
+         var newEquation = this.state.equation + token;
+         this.setState({
+           equation : newEquation,
+        })}
   }
   render() {
     return (
@@ -66,14 +91,14 @@ export default class Greycalc extends Component {
           <Content contentContainerStyle={{flex: 1}} style={{padding: 0}}>
             <Grid >
                   <Row size={20} style={s.topBar}>
-                      <Text style={s.calculationText}> 5 + 5 = 10 </Text>
+                      <Text style={s.calculationText}>{this.state.equation}</Text>
                   </Row>
                   <Row size={55} style={s.middleBar}>
                       <Col style={s.middleColumn}>
                            <InputCell token={1} _pushToken = {this._pushToken} ></InputCell>         
                            <InputCell token={4} _pushToken = {this._pushToken} ></InputCell>
                            <InputCell token={7} _pushToken = {this._pushToken} ></InputCell>
-                           <InputCellBottom token={""} _pushToken = {this._pushToken} ></InputCellBottom>
+                           <InputCellBottom token={"CLR"} _pushToken = {this._pushToken} ></InputCellBottom>
                       </Col>
                       <Col style={s.middleColumn}>
                             <InputCell token={2} _pushToken = {this._pushToken} ></InputCell>         
@@ -88,7 +113,12 @@ export default class Greycalc extends Component {
                             <InputCellBottom token={"="} _pushToken = {this._pushToken} ></InputCellBottom>                  
                       </Col>
                   </Row>
-                  <Row size={12.5} style={{backgroundColor : "#757575"}}></Row>
+                  <Row size={12.5} style={s.bottomBar}>
+                      <InputCellBottom token={"+"} _pushToken = {this._pushToken} ></InputCellBottom> 
+                      <InputCellBottom token={"-"} _pushToken = {this._pushToken} ></InputCellBottom>
+                      <InputCellBottom token={"%"} _pushToken = {this._pushToken} ></InputCellBottom>  
+                      <InputCellBottom token={"*"} _pushToken = {this._pushToken} ></InputCellBottom>  
+                  </Row>
                   <Row size={12.5} style={{backgroundColor : "#424242"}}></Row>
             </Grid>
           </Content>
