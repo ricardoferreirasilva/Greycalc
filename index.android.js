@@ -3,7 +3,7 @@
  * https://github.com/facebook/react-native
  * @flow
  */
-
+import { Container, Header, Title, Content, Footer, FooterTab, Button, Icon } from 'native-base';
 import React, { Component } from 'react';
 import {
   AppRegistry,
@@ -15,18 +15,19 @@ import {
 export default class Greycalc extends Component {
   render() {
     return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>
-          First commit.
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit index.android.js
-        </Text>
-        <Text style={styles.instructions}>
-          Double tap R on your keyboard to reload,{'\n'}
-          Shake or press menu button for dev menu
-        </Text>
-      </View>
+      <Container>
+                <Header>
+                    <Button transparent>
+                        <Icon name='ios-arrow-back' />
+                    </Button>
+                    
+                    <Title>Header</Title>
+                    
+                    <Button transparent>
+                        <Icon name='ios-menu' />
+                    </Button>
+                </Header>
+            </Container>
     );
   }
 }
