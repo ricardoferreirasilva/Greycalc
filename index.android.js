@@ -19,10 +19,6 @@ import {
 } from 'react-native';
 class InputCell extends Component
 {
-  _onClick(token)
-  {
-      console.log(token);
-  }
   render()
   {
     return(
@@ -38,10 +34,6 @@ class InputCell extends Component
 };
 class InputCellBottom extends Component
 {
-  _onClick(token)
-  {
-      console.log(token);
-  }
   render()
   {
     return(
@@ -68,10 +60,18 @@ export default class Greycalc extends Component {
   {
       if(token == "=")
       {
-        this.setState({
-           equation : "result",
+        try {
+          eval("var result = "+this.state.equation);
+         this.setState({
+           equation : result,
+         })
+        } catch (error) {
+          this.setState({
+           equation : "",
+              })
+           console.error("Wrong syntax.");
         }
-      )}
+      }
       else if(token == "CLR")
       {
         
@@ -116,7 +116,7 @@ export default class Greycalc extends Component {
                   <Row size={12.5} style={s.bottomBar}>
                       <InputCellBottom token={"+"} _pushToken = {this._pushToken} ></InputCellBottom> 
                       <InputCellBottom token={"-"} _pushToken = {this._pushToken} ></InputCellBottom>
-                      <InputCellBottom token={"%"} _pushToken = {this._pushToken} ></InputCellBottom>  
+                      <InputCellBottom token={"/"} _pushToken = {this._pushToken} ></InputCellBottom>  
                       <InputCellBottom token={"*"} _pushToken = {this._pushToken} ></InputCellBottom>  
                   </Row>
                   <Row size={12.5} style={{backgroundColor : "#424242"}}></Row>

@@ -1609,12 +1609,8 @@ var _reactNative=require(44 /* react-native */);var _Dimensions$get=_reactNative
 
 
 
-InputCell=function(_Component){babelHelpers.inherits(InputCell,_Component);function InputCell(){babelHelpers.classCallCheck(this,InputCell);return babelHelpers.possibleConstructorReturn(this,(InputCell.__proto__||Object.getPrototypeOf(InputCell)).apply(this,arguments));}babelHelpers.createClass(InputCell,[{key:'_onClick',value:function _onClick(
+InputCell=function(_Component){babelHelpers.inherits(InputCell,_Component);function InputCell(){babelHelpers.classCallCheck(this,InputCell);return babelHelpers.possibleConstructorReturn(this,(InputCell.__proto__||Object.getPrototypeOf(InputCell)).apply(this,arguments));}babelHelpers.createClass(InputCell,[{key:'render',value:function render()
 
-token)
-{
-console.log(token);
-}},{key:'render',value:function render()
 
 {var _this2=this;
 return(
@@ -1628,12 +1624,8 @@ _react2.default.createElement(_reactNative.Text,{style:s.calculationText},this.p
 
 }}]);return InputCell;}(_react.Component);
 ;var
-InputCellBottom=function(_Component2){babelHelpers.inherits(InputCellBottom,_Component2);function InputCellBottom(){babelHelpers.classCallCheck(this,InputCellBottom);return babelHelpers.possibleConstructorReturn(this,(InputCellBottom.__proto__||Object.getPrototypeOf(InputCellBottom)).apply(this,arguments));}babelHelpers.createClass(InputCellBottom,[{key:'_onClick',value:function _onClick(
+InputCellBottom=function(_Component2){babelHelpers.inherits(InputCellBottom,_Component2);function InputCellBottom(){babelHelpers.classCallCheck(this,InputCellBottom);return babelHelpers.possibleConstructorReturn(this,(InputCellBottom.__proto__||Object.getPrototypeOf(InputCellBottom)).apply(this,arguments));}babelHelpers.createClass(InputCellBottom,[{key:'render',value:function render()
 
-token)
-{
-console.log(token);
-}},{key:'render',value:function render()
 
 {var _this4=this;
 return(
@@ -1660,9 +1652,17 @@ token)
 {
 if(token=="=")
 {
+try{
+eval("var result = "+this.state.equation);
 this.setState({
-equation:"result"});
+equation:result});
 
+}catch(error){
+this.setState({
+equation:""});
+
+console.error("Wrong syntax.");
+}
 }else
 if(token=="CLR")
 {
@@ -1708,7 +1708,7 @@ _react2.default.createElement(InputCellBottom,{token:"=",_pushToken:this._pushTo
 _react2.default.createElement(_reactNativeEasyGrid.Row,{size:12.5,style:s.bottomBar},
 _react2.default.createElement(InputCellBottom,{token:"+",_pushToken:this._pushToken}),
 _react2.default.createElement(InputCellBottom,{token:"-",_pushToken:this._pushToken}),
-_react2.default.createElement(InputCellBottom,{token:"%",_pushToken:this._pushToken}),
+_react2.default.createElement(InputCellBottom,{token:"/",_pushToken:this._pushToken}),
 _react2.default.createElement(InputCellBottom,{token:"*",_pushToken:this._pushToken})),
 
 _react2.default.createElement(_reactNativeEasyGrid.Row,{size:12.5,style:{backgroundColor:"#424242"}})))));
