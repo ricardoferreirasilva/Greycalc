@@ -80,7 +80,7 @@ export default class Greycalc extends Component {
         }
       )}
       else{
-         var newEquation = this.state.equation + token;
+         var newEquation = this.state.equation + "" + token;
          this.setState({
            equation : newEquation,
         })}
